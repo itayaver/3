@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="he">
+<head>
+    <title>הרשמה</title>
+    <script type="text/javascript">
+        function IsValid() {
+
+            var firstname = document.getElementById('firstname');
+            firstname.style.backgroundColor = "white";
+
+            var phonenumber = document.getElementById('phonenumber');
+            phonenumber.style.backgroundColor = "white";
+
+            var lastname = document.getElementById('lastname');
+            lastname.style.background = "white";
+
+            var password = document.getElementById('password');
+            password.style.background = "white";
+
+            var cpassword = document.getElementById('cpassword');
+            cpassword.style.background = "white";
+
+            var user = document.getElementById('user');
+            user.style.background = "white";
+
+            var email = document.getElementById('email');
+            email.style.background = "white";
+
+            var charCounter = 0;
+            var numCounter = 0;
+
+            var male = document.getElementById('male');
+            var female = document.getElementById('female');
+            var Msg = "";
+
+            // בדיקת הכנסת קלט שם פרטי
+
+            if (firstname.value == '') {
+                Msg += "נא למלא שם פרטי <br/>";
+                firstname.focus();
+                firstname.style.backgroundColor = "red";
+            }
+            // בדיקת שם אורך מחרוזת
+            if ((firstname.value.length < 2) || (firstname.value.length > 8)) {
+                Msg += "נא להזין שם פרטי בין 2 ל-8 תווים <br/>";
+                firstname.focus();
+                firstname.style.backgroundColor = "red";
+            }
+            if (lastname.value == '') {
+                Msg += "נא למלא שם משפחה <br/>";
+                lastname.focus();
+                lastname.style.backgroundColor = "red"
+            }
+            if ((lastname.value.length < 2) || (lastname.value.length > 8)) {
+                Msg += "נא להזין שם משפחה בין 2 ל-8 תווים <br/>";
+                lastname.focus();
+                lastname.style.backgroundColor = "red";
+            }
+
+            if (user.value == '') {
+                Msg += "נא למלא שם פרטי <br/>";
+                user.focus();
+                user.style.backgroundColor = "red";
+            }
+            // בדיקת שם אורך מחרוזת
+            if ((user.value.length < 2) || (user.value.length > 8)) {
+                Msg += "נא להזין שם משתמש בין 2 ל-8 תווים <br/>";
+                user.focus();
+                user.style.backgroundColor = "red";
+            }
+
+
+
+
+
+            if ((male.checked == false) && (female.checked == false)) {
+                Msg += "בחר מגדר של זכר או נקבה <br/>";
+            }
+
+            if (email.value == '') {
+                Msg += "נא למלא דואר אלקטרוני <br/>";
+                email.focus();
+                email.style.backgroundColor = "red";
+            }
+            else {
+                if (email.value.indexof('@') <= 1) {
+                    msg += " דואל חייב להכיל @ מהתו השני ומעלה <br/>";
+                }
+
+                if (email.value.lastindexof('@') != email.value.indexof('@')) {
+                    msg += " דואל חייב להכיל רק @ אחד<br/>";
+                }
+            }
+
+            // בדיקת קלט מספר טלפון
+
+            if (phonenumber.value == '') {
+                Msg += "נא למלא מספר טלפון <br/>";
+                phonenumber.focus();
+                phonenumber.style.backgroundColor = "red";
+            }
+
+            // בדיקת שדה מספרי במספר טלפון
+
+            if (isNaN(phonenumber.value) == true) {
+                Msg += " מספר טלפון חייב להכיל ספרות בלבד<br/>";
+                phonenumber.focus();
+                phonenumber.style.backgroundColor = "red";
+            }
+
+            // בדיקת אורך מספר טלפון
+
+            if (phonenumber.value.length != 7) {
+                Msg += "נא להזין מספר טלפון של 7 ספרות <br/>";
+                phonenumber.focus();
+                phonenumber.style.backgroundColor = "red";
+            }
+
+            if ((password.value.length < 4) || (password.value.length > 12)) {
+                Msg += "נא להזין סיסמה בין 4 ל-12 תווים <br/>";
+                password.focus();
+                password.style.backgroundColor = "red";
+            }
+
+            if (password.value == '') {
+                Msg += "נא למלא סיסמה <br/>";
+                password.focus();
+                password.style.backgroundColor = "red";
+            }
+            if (password.value !== cpassword.value) {
+                Msg += "הסיסמה אינה זהה באימות הסיסמה <br/>";
+                cpassword.focus();
+                cpassword.style.backgroundColor = "red";
+            }
+            if (cpassword.value == '') {
+                Msg += "נא למלא אימות סיסמה <br/>";
+                cpassword.focus();
+                cpassword.style.backgroundColor = "red";
+            }
+
+            for (i = 0; i < password.value.length; i++) {
+                if (isNaN(password.value.charAt(i)) == true) {
+                    charCounter++;
+                }
+                else {
+                    numCounter++;
+                }
+
+            }
+            if (charCounter == 0 || numCounter == 0) {
+                Msg += "הסיסמה צריכה להכיל לפחות אות אחת ולפחות מספר אחד</br>";
+                password.style.backgroundColor = "red";
+                password.focus();
+                b = false;
+            }
+
+            document.getElementById('ErrorSummary').innerHTML = Msg;
+            if (Msg == "") {
+                return true;
+            }
+
+            else {
+                return false;
+            }
+        }
+    </script>
+    <style>
+        body {
+            margin: 0;
+            background-color: lightseagreen
+        }
+
+        ul.topnav {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+            background-color: #333;
+        }
+
+            ul.topnav li {
+                float: right;
+            }
+
+                ul.topnav li a {
+                    display: block;
+                    color: white;
+                    text-align: center;
+                    padding: 16px 22px;
+                    text-decoration: none;
+                    float: right;
+                }
+
+
+
+                    ul.topnav li a.active {
+                        background-color: cornflowerblue;
+                    }
+
+                ul.topnav li.right {
+                    float: right;
+                }
+
+
+
+
+        .center {
+            display: block;
+            margin-left: auto;
+            margin-right: auto;
+            width: 50%;
+        }
+        msg{
+            font-size:35px;
+
+        }
+    </style>
+</head>
+<body dir="rtl">
+    <ul class="topnav">
+        <li><font size="5"><a class="active" href="דף הבית.html">דף הבית</a></font> </li>
+        <li><font size="5"><a href="הנושא שלי.html">הנושא שבחרתי</a></font></li>
+        <li><font size="5"><a href="טבלה.html">טבלה</a></font></li>
+        <li><font size="5"><a href="עליי.html">מידע עליי</a></font></li>
+        <li class="left"><font size="5"><a href="התחברות.html">התחברות</a></font></li>
+        <li class="left"><font size="5"><a href="הרשמה.html">הרשמה</a></font></li>
+        <li class="left"><font size="5"><a href="ריצה.html">ריצה ספרדית</a></font></li>
+        <li class="left"><font size="5"><a href="GIVE UP ROBOT.html">Give Up Robot</a></font></li>
+
+
+
+    </ul>
+    <h1 style="text-align:center; font-size:100px; margin:auto"> הרשמה </h1>
+    <br />
+    <form name="register" style="text-align: center; font-size:18px" action="htmlpage.html" onsubmit="return IsValid()" method="post">
+        שם פרטי<br />
+        <input type="text" name="firstname" id="firstname" value="" /> <br />
+        שם משפחה<br />
+        <input type="text" name="lastname" id="lastname" value="" /> <br /> <br />
+        שם משתמש<br />
+        <input type="text" name="user" id="user" value="" /> <br /> <br />
+        מגדר<br />
+        <input type="radio" name="gender" id="male" value="male" /> זכר
+        <input type="radio" name="gender" id="female" value="female" /> נקבה <br /> <br />
+        סיסמה <br />
+        <input type="password" name="password" id="password" value="" /><br /><br />
+        אימות סיסמה <br />
+        <input type="password" name="cpassword" id="cpassword" value="" /><br /><br />
+        תאריך <br />
+        <input type="date" /><br /><br />
+        דוא"ל <br />
+        <input type="text" name="email" id="email" value="" /><br /><br />
+        מספר טלפון<br />
+        <input type="text" name="phonenumber" id="phonenumber" value="">
+        <select>
+            <option value="050">050</option>
+            <option value="052">052</option>
+            <option value="053">053</option>
+            <option value="054">054</option>
+        </select>
+        <br /><br />
+        <input type="submit" name="submit" id="submit" value="שלח" />
+        <input type="reset" value="אפס" />
+        <div class="ErrorSummary" id="ErrorSummary" style="font-size:25px"></div>
+    </form>
+</body>
+</html>
